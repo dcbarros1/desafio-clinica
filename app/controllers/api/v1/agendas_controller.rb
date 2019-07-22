@@ -18,6 +18,9 @@ module Api
                 
                 agenda = Agenda.new(agenda_params)
                 agenda.fim_consulta = agenda.consulta + 30.minutes
+                agenda.paciente = agenda.paciente.upcase
+                agenda.medico = agenda.medico.upcase
+                agenda.especialidade = agenda.especialidade.upcase
                 
                 if agenda.save
                     render json:{status: 'Agendamento realizado com Sucesso', message: 'Agendamento salvo', data:agenda}, status: :ok
