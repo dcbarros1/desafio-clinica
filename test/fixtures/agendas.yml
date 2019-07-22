@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paciente: MyString
+  medico: MyString
+  especialidade: MyString
+  consulta: 2019-07-22 12:17:25
+  fim_consulta: 2019-07-22 12:17:25
+
+two:
+  paciente: MyString
+  medico: MyString
+  especialidade: MyString
+  consulta: 2019-07-22 12:17:25
+  fim_consulta: 2019-07-22 12:17:25
