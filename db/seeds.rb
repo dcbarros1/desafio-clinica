@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+5.times do
+    consulta = Faker::Time.between(7.days.ago,Date.today,:morning)
+    Agenda.create({
+        paciente: Faker::Name.name,
+        medico: 'Médico 1',
+        especialidade: 'Clínico Geral',
+        consulta: consulta,
+        fim_consulta: consulta + 30.minutes
+    })    
+end
