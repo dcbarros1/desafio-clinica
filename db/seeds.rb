@@ -9,8 +9,8 @@
     consulta = Faker::Time.between(7.days.ago,Date.today,:morning)
     Agenda.create({
         paciente: Faker::Name.name,
-        medico: 'Médico 1',
-        especialidade: 'Clínico Geral',
+        medico: 'MEDICO 1',
+        especialidade: 'CLINICO GERAL',
         consulta: consulta,
         fim_consulta: consulta + 30.minutes
     })    

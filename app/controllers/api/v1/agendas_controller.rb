@@ -17,16 +17,22 @@ module Api
             def create
                 
                 agenda = Agenda.new(agenda_params)
-                agenda.fim_consulta = agenda.consulta + 30.minutes
+
+                agenda.consulta = agenda.consulta.to_datetime
+                agenda.fim_consulta = agenda.consulta.to_datetime + 30.minutes
                 agenda.paciente = agenda.paciente.upcase
                 agenda.medico = agenda.medico.upcase
                 agenda.especialidade = agenda.especialidade.upcase
+
+                if (Agenda.where(medico:agenda.medico,:consulta => agenda.consulta..agenda.fim_consulta - 1.minutes) == [])
+                    if agenda.save
+                        render json:{status: 'Agendamento realizado com Sucesso', message: 'Agendamento salvo', data:agenda}, status: :ok
+                    else
+                        render json:{status: 'Erro no agendamento', message: 'Agendamento não salvo', data:agenda.errors}, status: :unprocessable_entity
                 
-                if agenda.save
-                    render json:{status: 'Agendamento realizado com Sucesso', message: 'Agendamento salvo', data:agenda}, status: :ok
+                    end
                 else
                     render json:{status: 'Erro no agendamento', message: 'Agendamento não salvo', data:agenda.errors}, status: :unprocessable_entity
-            
                 end
             end
 
